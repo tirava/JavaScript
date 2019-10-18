@@ -3,9 +3,12 @@
 // foo(5)() = 5
 // foo(2)(1)(3)(4)() = 24
 
-let result = 1;
+let result;
 
 const foo = function (x) {
+    if (!result || result === 0) {
+        result = 1;
+    }
     if (!x) {
         const tmp = result;
         result = 1;
