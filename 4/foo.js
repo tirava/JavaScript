@@ -3,17 +3,32 @@
 // foo(5)() = 5
 // foo(2)(1)(3)(4)() = 24
 
-function foo(x) {
-    if (!x) {
-        const tmp = foo.result;
-        foo.result = undefined;
-        return tmp;
+// function foo(x) {
+//     if (!x) {
+//         const tmp = foo.result;
+//         foo.result = undefined;
+//         return tmp;
+//     }
+//     if (!foo.result) {
+//         foo.result = 1;
+//     }
+//     foo.result *= x;
+//     return foo;
+// }
+
+function foo(a) {
+
+    let currentResult = a;
+
+    function f(b) {
+        if (b === undefined) return currentResult;
+        currentResult *= b;
+        return f;
     }
-    if (!foo.result) {
-        foo.result = 1;
-    }
-    foo.result *= x;
-    return foo;
+
+    f.toString = () => currentResult;
+
+    return f;
 }
 
 console.log("result foo(): ", foo());
