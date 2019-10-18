@@ -4,20 +4,20 @@
 // foo(2)(1)(3)(4)() = 24
 
 function foo(x) {
+    if (!x) {
+        const tmp = foo.result;
+        foo.result = undefined;
+        return tmp;
+    }
     if (!foo.result) {
         foo.result = 1;
     }
-    if (!x) {
-        const tmp = foo.result;
-        foo.result = 1;
-        return tmp;
-    }
     foo.result *= x;
-    return function (y) {
-        return foo(y);
-    }
+    return foo;
 }
 
+console.log("result foo(): ", foo());
 console.log("result foo(5)(2)(): ", foo(5)(2)());
 console.log("result foo(5)(): ", foo(5)());
 console.log("result foo(2)(1)(3)(4)(): ", foo(2)(1)(3)(4)());
+console.log("result foo(): ", foo());
