@@ -25,12 +25,14 @@ for (let i = 1; i <= numBirds; i++) {
 
 // game loop
 for (let leftBirds = numBirds; leftBirds > 1;) {
-    const bird1 = Math.floor(Math.random() * 10);
-    const bird2 = Math.floor(Math.random() * 10);
-    if (bird1 === bird2) { // no self eating
+    const bird1 = Math.floor(Math.random() * numBirds);
+    const bird2 = Math.floor(Math.random() * numBirds);
+    // no self eating
+    if (bird1 === bird2) {
         continue
     }
-    if (birds[bird1].wasEaten || birds[bird2].wasEaten) { // no eat eaten
+    // no eat eaten
+    if (birds[bird1].wasEaten || birds[bird2].wasEaten) {
         continue;
     }
     birds[bird2].wasEaten = true;
@@ -39,10 +41,10 @@ for (let leftBirds = numBirds; leftBirds > 1;) {
 }
 
 // print results
-for (let i = 0; i < numBirds; i++) {
-    if (!birds[i].wasEaten) {
-        console.log("Win Bird", i + 1, "with points", birds[i].points);
-        break;
+birds.forEach(function (bird, i) {
+    if (!bird.wasEaten) {
+        console.log("Win Bird", i + 1, "with points:", bird.points);
     }
-}
+});
+
 console.log(birds);
