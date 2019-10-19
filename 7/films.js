@@ -1,4 +1,4 @@
-const categories = ["Юмор", "Ужастики"];
+const categories = ["Юмор", "Хоррор", "Фантастика", "Драма", "Триллер"];
 const films = [];
 
 class Comment {
@@ -12,7 +12,9 @@ class Comment {
 class Film {
     constructor(name, cat) {
         this.name = name;
-        this.category = cat;
+        this.category = categories[cat];
+        this.budget = 0;
+        this.expertStars = 3;
         this.comments = [];
     }
 
@@ -23,7 +25,7 @@ class Film {
     getAverageStars() {
         let sumStars = 0;
         this.comments.forEach(comment => sumStars += comment.stars);
-        return sumStars / this.comments.length;
+        return (this.comments.length > 0) ? sumStars / this.comments.length : 0;
     }
 }
 
@@ -34,5 +36,20 @@ films.push(new Film("Один дома", 0));
 films[1].addComment("очень смешной фильм", "user", 5);
 films[1].addComment("совсем не смешной фильм", "user", 1);
 
-console.log(films[0].getAverageStars());
-console.log(films[1].getAverageStars());
+films.push(new Film("УЖАС", 1));
+films.push(new Film("Гарри Поттер", 2));
+films.push(new Film("Грустный фильм 1", 3));
+films.push(new Film("Грустный фильм 2", 3));
+films.push(new Film("Стрелялка", 4));
+
+function getFilmsByCategory(cat) {
+    const newFilms = [];
+    for (let film of films) {
+        if (film.category === cat) {
+            newFilms.push(film);
+        }
+    }
+    return newFilms;
+}
+
+// console.log(getFilmsByCategory("Юмор"));
