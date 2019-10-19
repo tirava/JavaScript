@@ -7,8 +7,10 @@
 //  - Цикл должен выбирать случайным образом одну из живых птиц и скармливать ей любую другую
 //  - (та, которая съедена, становится wasEaten=true, а та, которую покормили, — point++).
 
-const numBirds = 10;
-const birds = [];
+const
+    numBirds = 10,
+    numWinners = 1,
+    birds = [];
 
 class Bird {
     constructor(name) {
@@ -24,15 +26,11 @@ for (let i = 1; i <= numBirds; i++) {
 }
 
 // game loop
-for (let leftBirds = numBirds; leftBirds > 1;) {
+for (let leftBirds = numBirds; leftBirds > numWinners;) {
     const bird1 = Math.floor(Math.random() * numBirds);
     const bird2 = Math.floor(Math.random() * numBirds);
-    // no self eating
-    if (bird1 === bird2) {
-        continue
-    }
-    // no eat eaten
-    if (birds[bird1].wasEaten || birds[bird2].wasEaten) {
+    // no eat eaten and self eating
+    if (birds[bird1].wasEaten || birds[bird2].wasEaten || bird1 === bird2) {
         continue;
     }
     birds[bird2].wasEaten = true;
@@ -43,7 +41,7 @@ for (let leftBirds = numBirds; leftBirds > 1;) {
 // print results
 birds.forEach(function (bird, i) {
     if (!bird.wasEaten) {
-        console.log("Win Bird", i + 1, "with points:", bird.points);
+        console.log("Win", bird.name, "with points:", bird.points);
     }
 });
 
