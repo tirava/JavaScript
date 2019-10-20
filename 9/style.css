@@ -15,7 +15,7 @@ section {
 }
 
 .category {
-    padding: 15px 30px;
+    padding: 15px 15px;
     cursor: pointer;
     transition: background 1s;
 }
