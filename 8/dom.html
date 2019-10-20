@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Learn</title>
     <style>
-        body {
-            font-size: 50px;
-        }
+        /*body {*/
+        /*    font-size: 50px;*/
+        /*}*/
         .added {
-            color: red;
-            background-color: #ddd;
-            padding: 10px;
+            /*color: red;*/
+            background-color: red;
+            /*padding: 10px;*/
+            margin: 10px;
         }
     </style>
 </head>
@@ -18,17 +19,25 @@
 <div class="class" id="iden">
     Hello!
 </div>
+</body>
+
 <script>
     // const firstRl = document.getElementById("iden");
     // const firstRl = document.getElementsByClassName("class")[0];
     const firstRl = document.querySelector("div");
     // console.log(firstRl);
     // firstRl.innerText = "I'm here!";
-    // firstRl.innerHTML = "I'm <strong>here</strong>!";
+    firstRl.innerHTML = "I'm <strong>here</strong>!";
     // firstRl.style.color = "red";
     // firstRl.style.backgroundColor = "#ddd";
     // firstRl.style.padding = "10px";
     firstRl.classList.add("added");
+    const body = document.querySelector("body");
+    body.innerHTML += "<div class='added'>I'm here x2</div>";
+    const newEl = document.createElement("div");
+    newEl.innerText = "I'm here x3";
+    newEl.classList.add("added");
+    body.appendChild(newEl);
 </script>
-</body>
+
 </html>
