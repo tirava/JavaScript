@@ -23,6 +23,10 @@ function renderCommentForm(film) {
     const form = document.createElement("div");
     form.classList.add("comment-form");
     form.innerHTML = content;
+    form.addEventListener("click", function (event) {
+        event.stopPropagation();
+        form.classList.add("chosen")
+    });
     return form;
 }
 
@@ -39,6 +43,7 @@ function openFilmCard(film, newEl) {
         event.stopPropagation();
         const commentForm = renderCommentForm(film);
         newEl.appendChild(commentForm);
+        newEl.removeChild(addCommentButton);
     });
     newEl.appendChild(addCommentButton);
 }
