@@ -1,0 +1,15 @@
+section {
+    width: 500px;
+    margin: 60px auto;
+}
+
+div {
+    border: 1px solid black;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
