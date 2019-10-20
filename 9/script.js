@@ -43,13 +43,5 @@ films.push(new Film("Грустный фильм 2", 3));
 films.push(new Film("Стрелялка", 4));
 
 function getFilmsByCategory(cat) {
-    const newFilms = [];
-    for (let film of films) {
-        if (film.category === cat) {
-            newFilms.push(film);
-        }
-    }
-    return newFilms;
+    return films.filter(film => film.category === cat);
 }
-
-// console.log(getFilmsByCategory("Юмор"));
