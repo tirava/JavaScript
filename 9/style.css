@@ -90,3 +90,7 @@ input.form-comment {
     padding: 7px;
     border: 4px dotted #ecc;
 }
+
+.comment-form button {
+    margin-top: 5px;
+}

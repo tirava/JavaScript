@@ -17,9 +17,17 @@ function getFilmComments(filmName) {
     return film.comments;
 }
 
+function onAddCommentClick(name) {
+    const authorValue = document.getElementById("author-" + name).value;
+    const commentValue = document.getElementById("comment-" + name).value;
+    console.log(authorValue, commentValue);
+}
+
 function renderCommentForm(film) {
     const content = `<div class="form-title">Добавьте отзыв фильму ${film.name}</div><div class="form-body">
-<input placeholder="Ваше имя" class="form-author"><input placeholder="Ваш отзыв" class="form-comment"></div>`;
+<input id="author-${film.name}" placeholder="Ваше имя" class="form-author">
+<input id="comment-${film.name}" placeholder="Ваш отзыв" class="form-comment">
+<button onclick="onAddCommentClick(\'${film.name}\')">Отправить</button></div>`;
     const form = document.createElement("div");
     form.classList.add("comment-form");
     form.innerHTML = content;
