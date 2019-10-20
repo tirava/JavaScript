@@ -16,7 +16,10 @@ function onCategoryChoice(categoryName) {
     for (let film of films) {
         const newEl = document.createElement("div");
         newEl.classList.add("film");
-        newEl.innerText = film.name;
+        newEl.innerHTML = `<div class="film-name">${film.name}</div>`;
+        newEl.addEventListener("click", function () {
+            newEl.innerHTML += `<div class="film-comments">film clicked</div>`;
+        });
         document.querySelector(".films").appendChild(newEl);
     }
 }
