@@ -94,3 +94,40 @@ input.form-comment {
 .comment-form button {
     margin-top: 5px;
 }
+
+/*stars*/
+.rating_block {
+    width: 125px;
+    height: 25px;
+    margin-top: 15px;
+}
+
+.rating_block input[type="radio"] {
+    display: none;
+}
+
+.label_rating_common {
+    float: right;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(rating.png) no-repeat 50% 0;
+}
+
+.label_rating {
+    cursor: pointer;
+}
+
+.rating_block .label_rating:hover,
+.rating_block .label_rating:hover ~ .label_rating,
+.rating_block input[type="radio"]:checked ~ .label_rating {
+    background-position: 50% -25px;
+}
+
+.label_rating_off {
+    background: url(rating.png) no-repeat 50% 0;
+}
+
+.label_rating_on {
+    background: url(rating.png) no-repeat 50% -25px;
+}

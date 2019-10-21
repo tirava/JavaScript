@@ -25,7 +25,7 @@ function onAddCommentClick(name) {
     const authorValue = document.getElementById("author-" + name).value;
     const commentValue = document.getElementById("comment-" + name).value;
     const film = getFilmByName(name);
-    film.addComment(commentValue, authorValue);
+    film.addComment(commentValue, authorValue, 0);
     onCategoryChoice(film.category);
 }
 
@@ -48,6 +48,18 @@ function openFilmCard(film, newEl) {
     const comments = getFilmComments(film.name);
     let s = "";
     comments.forEach(c => {
+        let stars = "";
+        for (let i = 5; i > 0; i--) {
+            const onOff = (c.stars < i) ? "off" : "on";
+            stars += `<input name="rating" value="${i}" id="rating_${i}" type="radio" />
+<label for="rating_${i}" class="label_rating_common label_rating_${onOff}"></label>
+`;
+        }
+        s += `
+<div class="rating_block">
+${stars}
+</div>
+`;
         s += `<div class="film-comment"><span class="comment-author">${c.author}</span>: ${c.text}</div>`;
     });
     newEl.innerHTML += `<div class="film-comments">${s}</div>`;
