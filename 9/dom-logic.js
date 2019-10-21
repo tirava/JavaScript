@@ -25,12 +25,32 @@ function onAddCommentClick(name) {
     const authorValue = document.getElementById("author-" + name).value;
     const commentValue = document.getElementById("comment-" + name).value;
     const film = getFilmByName(name);
-    film.addComment(commentValue, authorValue, 0);
+    film.addComment(commentValue, authorValue, getStars(name));
     onCategoryChoice(film.category);
 }
 
+function getStars(name) {
+    const s = "author-" + name + "_rating_";
+    for (let i = 1; i <= 5; i++) {
+        const starsValue = document.getElementById(s + "" + i).checked;
+        if (starsValue === true) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 function renderCommentForm(film) {
+    let stars = "";
+    for (let i = 5; i > 0; i--) {
+        stars += `<input name="rating" value="${i}" id="author-${film.name}_rating_${i}" type="radio" />
+<label for="author-${film.name}_rating_${i}" class="label_rating_common label_rating"></label>
+`;
+    }
     const content = `<div class="form-title">Добавьте отзыв фильму ${film.name}</div><div class="form-body">
+<div class="rating_block">
+${stars}
+</div>
 <input id="author-${film.name}" placeholder="Ваше имя" class="form-author">
 <input id="comment-${film.name}" placeholder="Ваш отзыв" class="form-comment">
 <button onclick="onAddCommentClick(\'${film.name}\')">Отправить</button></div>`;
@@ -51,8 +71,8 @@ function openFilmCard(film, newEl) {
         let stars = "";
         for (let i = 5; i > 0; i--) {
             const onOff = (c.stars < i) ? "off" : "on";
-            stars += `<input name="rating" value="${i}" id="rating_${i}" type="radio" />
-<label for="rating_${i}" class="label_rating_common label_rating_${onOff}"></label>
+            stars += `<input name="rating_off" value="${i}" id="rating_off_${i}" type="radio" />
+<label for="rating_off_${i}" class="label_rating_common label_rating_${onOff}"></label>
 `;
         }
         s += `
